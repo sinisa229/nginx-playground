@@ -1,0 +1,20 @@
+server {
+    listen       80;
+    server_name  localhost;
+
+    location / {
+        proxy_pass http://my-http-listener/;
+    }
+
+}
+
+server {
+    listen       80;
+    server_name  sub.localhost;
+
+    location / {
+        proxy_pass http://my-http-listener;
+		proxy_set_header X-MyHeader MySubdomain;
+    }
+
+}
